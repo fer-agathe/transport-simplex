@@ -57,6 +57,8 @@ Then, the package can be loaded as follows:
 library(transportsimplex)
 ```
 
+The following small examples show how to use the package:
+
 ```{r}
 # First three columns: probabilities of being of class A, B, or C.
 # Last column: group (0 or 1)
@@ -64,8 +66,8 @@ data(toydataset)
 X0 <- toydataset[toydataset$group == 0, c("A", "B", "C")]
 X1 <- toydataset[toydataset$group == 1, c("A", "B", "C")]
 
-# Method 1: 
-# --------
+# Method 1: Gaussian OT in the Euclidean Space
+# --------------------------------------------
 # Transport only, from group 0 to group 1, using centered log ratio transform:
 transp <- transport_simplex(X0 = X0, X1 = X1, isomorphism = "clr")
 
@@ -88,8 +90,8 @@ transp_new_obs_with_interp <- transport_simplex_new(
 interpolated(transp_new_obs_with_interp)[[1]] # first new obs
 interpolated(transp_new_obs_with_interp)[[1]] # second new obs
 
-# Method 2
-# --------
+# Method 2: Optimal Transport within the simplex
+# ----------------------------------------------
 # Optimal Transport using Linear Programming:
 mapping <- wasserstein_simplex(as.matrix(X0), as.matrix(X1))
 # The counterfactuals of observations of group 0 in group 1
