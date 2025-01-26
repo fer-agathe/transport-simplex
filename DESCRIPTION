@@ -1,0 +1,27 @@
+Package: transportsimplex
+Title: Transport composition data using Gaussian optimal transport
+Version: 0.0.0.9000
+Author: Fernandes Machado, Agathe and Charpentier, Arthur and Gallic, Ewen
+Maintainer: Agathe Fernandes Machado <fernandes_machado.agathe@courrier.uqam.ca>
+Description: This package aims at creating counterfactuals for categorical 
+  attributes of individuals from two different groups, using the representation
+  of the attribute in the simplex (probability of belonging to each category)
+  and relying on optimal transport to map characteristics from one group to the
+  other.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    compositions,
+    CVXR,
+    dplyr,
+    expm,
+    lpSolve,
+    purrr,
+    rlang,
+    stats,
+    tibble
+Depends: 
+    R (>= 3.5)
+LazyData: true
