@@ -168,8 +168,8 @@ prop_marital |>
 
 We fit four models, $\widehat{m}^{(k)}(\mathbf{x}_j|\mathbf{x}_{-j})$, using a multinomial loss, yielding predicted scores $\widehat{\mathbf{x}}_{j}^{(k)}\in\mathcal{S}_d$ for $k \in \{1,2,3,4\}$. The sensitive attribute $s$. The income variable is also removed. The four models are:
 
-- **GAM-MLR (1):** A multinomial model with splines for three continuous variables.
-- **GAM-MLR (2):** A multinomial model with splines for three continuous variables and seven additional predictors.
+- **GAM-MLR (1):** A multinomial model with splines for two continuous variables and a third variable.
+- **GAM-MLR (2):** A multinomial model with adidtional variables.
 - **Random Forest:** A classifier using all available variables.
 - **Gradient Boosting Model:** A GBM trained on all available variables.
 
@@ -371,7 +371,7 @@ We can then have a look at the percentage of each purpose category in the initia
 ```{r}
 #| code-fold: true
 #| code-summary: Codes to create the Table.
-#| fig-cap: Optimal transport using the $\operatorname{clr}$ transformation, and Gaussian optimal transports, on the \texttt{purpose} scores in the \texttt{German Credit} database, with two logistic GAM models to predict scores, a random forest, and a boosting model. For observed values, the observed proportions of purpose categories are reported by gender. Then, for each model, the average of predicted scores by gender for each categories are shown (Composition). Lastly, the average of transported predicted scores for women are reported (Transported).
+#| fig-cap: Optimal transport using the clr transformation, and Gaussian optimal transports, on the _purpose_ scores in the _German Credit_ database, with two logistic GAM models to predict scores, a random forest, and a boosting model. For observed values, the observed proportions of purpose categories are reported by gender. Then, for each model, the average of predicted scores by gender for each categories are shown (Composition). Lastly, the average of transported predicted scores for women are reported (Transported).
 #| label: tbl-german-counterfactuals
 
 # Proportions of each purpose level by gender in the dataset

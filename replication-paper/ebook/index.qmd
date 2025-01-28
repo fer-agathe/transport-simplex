@@ -6,13 +6,27 @@ This ebook provides replication codes for the article titled *'Optimal Transport
 
 ## Paper on arXiv
 
-The paper is available on arXiv: <https://arxiv.org/abs/>
+The paper is available on arXiv:
+
+{{< ai arxiv >}}  <https://arxiv.org/abs/2501.15549>
 
 :::
 
 :::{.callout-note}
 All the codes are written in R.
 :::
+
+:::{.callout-note}
+
+## Scripts
+
+The {{< fa brands r-project >}} scripts associated with this ebook are available in the script folder on the GitHub repository of this paper: 
+
+{{< fa brands github >}} <https://github.com/fer-agathe/transport-simplex/replication-paper/scripts>
+
+:::
+
+
 
 ## Abstract
 
