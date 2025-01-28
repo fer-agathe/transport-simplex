@@ -5,7 +5,7 @@ This repository contains the replication materials for the article titled
 <i>Optimal Transport on Categorical Data for Counterfactuals using Compositional 
 Data and Dirichlet Transport</i>.
 
-[![arXiv](https://img.shields.io/badge/arXiv-2408.03425-b31b1b.svg)](https://arxiv.org/abs/2501.15549)
+[![arXiv](https://img.shields.io/badge/arXiv-2501.15549-b31b1b.svg)](https://arxiv.org/abs/2501.15549)
 </div>
 
 📕 A companion html e-book that explains the codes and provides supplementary 
