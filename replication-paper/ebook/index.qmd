@@ -22,7 +22,7 @@ All the codes are written in R.
 
 The {{< fa brands r-project >}} scripts associated with this ebook are available in the script folder on the GitHub repository of this paper: 
 
-{{< fa brands github >}} <https://github.com/fer-agathe/transport-simplex/replication-paper/scripts>
+{{< fa brands github >}} <https://github.com/fer-agathe/transport-simplex/tree/main/replication-paper/scripts>
 
 :::
 

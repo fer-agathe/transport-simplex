@@ -12,7 +12,7 @@ Data and Dirichlet Transport</i>.
 materials can be accessed at the following url: 
 <https://fer-agathe.github.io/transport-simplex>.
 
-The R scripts are also available: <https://fer-agathe.github.io/transport-simplex/replication-paper/scripts/>.
+The R scripts are also available: <https://github.com/fer-agathe/transport-simplex/tree/main/replication-paper/scripts>.
 
 ## Reference of the paper (preprint on arXiv)
 
