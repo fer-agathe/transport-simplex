@@ -509,8 +509,8 @@ Proportions
 <h2 data-number="3.2" class="anchored" data-anchor-id="estimation-of-scores"><span class="header-section-number">3.2</span> Estimation of Scores</h2>
 <p>We fit four models, <span class="math inline">\(\widehat{m}^{(k)}(\mathbf{x}_j|\mathbf{x}_{-j})\)</span>, using a multinomial loss, yielding predicted scores <span class="math inline">\(\widehat{\mathbf{x}}_{j}^{(k)}\in\mathcal{S}_d\)</span> for <span class="math inline">\(k \in \{1,2,3,4\}\)</span>. The sensitive attribute <span class="math inline">\(s\)</span>. The income variable is also removed. The four models are:</p>
 <ul>
-<li><strong>GAM-MLR (1):</strong> A multinomial model with splines for three continuous variables.</li>
-<li><strong>GAM-MLR (2):</strong> A multinomial model with splines for three continuous variables and seven additional predictors.</li>
+<li><strong>GAM-MLR (1):</strong> A multinomial model with splines for two continuous variables and a third variable.</li>
+<li><strong>GAM-MLR (2):</strong> A multinomial model with adidtional variables.</li>
 <li><strong>Random Forest:</strong> A classifier using all available variables.</li>
 <li><strong>Gradient Boosting Model:</strong> A GBM trained on all available variables.</li>
 </ul>
@@ -1252,7 +1252,7 @@ Female -&gt; Male
 </tr>
 </tbody>
 </table>
-<p>Optimal transport using the <span class="math inline">\(\operatorname{clr}\)</span> transformation, and Gaussian optimal transports, on the scores in the database, with two logistic GAM models to predict scores, a random forest, and a boosting model. For observed values, the observed proportions of purpose categories are reported by gender. Then, for each model, the average of predicted scores by gender for each categories are shown (Composition). Lastly, the average of transported predicted scores for women are reported (Transported).</p>
+<p>Optimal transport using the clr transformation, and Gaussian optimal transports, on the <em>purpose</em> scores in the <em>German Credit</em> database, with two logistic GAM models to predict scores, a random forest, and a boosting model. For observed values, the observed proportions of purpose categories are reported by gender. Then, for each model, the average of predicted scores by gender for each categories are shown (Composition). Lastly, the average of transported predicted scores for women are reported (Transported).</p>
 </div>
 </div>
 </figure>
