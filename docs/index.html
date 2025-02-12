@@ -403,7 +403,7 @@ Scripts
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"fer-agathe/transportsimplex"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(transportsimplex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is a small example showing how to use the main functions: <code class="sourceCode r"><span class="fu">transport_simplex</span>()</code> (method 1) and <code class="sourceCode r"><span class="fu">transport_simplex_new</span>()</code> (method 2).</p>
+<p>Here is a small example showing how to use the main functions: <code class="sourceCode r"><span class="fu">transport_simplex</span>()</code> (method 1) and <code class="sourceCode r"><span class="fu">wasserstein_simplex</span>()</code> and <code class="sourceCode r"><span class="fu">counterfactual_w</span>()</code> (method 2).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First three columns: probabilities of being of class A, B, or C.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Last column: group (0 or 1)</span></span>

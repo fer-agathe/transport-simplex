@@ -55,7 +55,7 @@ library(transportsimplex)
 ```
 
 
-Here is a small example showing how to use the main functions: `transport_simplex()`{.R} (method 1) and `transport_simplex_new()`{.R} (method 2).
+Here is a small example showing how to use the main functions: `transport_simplex()`{.R} (method 1) and `wasserstein_simplex()`{.R} and `counterfactual_w()`{.R} (method 2).
 
 ```{r}
 #| message: false
