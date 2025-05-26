@@ -50,7 +50,7 @@ To facilitate building on our approach, we put the main functions in an R packag
 
 The package needs to be installed:
 ```{r, eval=FALSE}
-remotes::install_github(repo = "fer-agathe/transportsimplex")
+remotes::install_github(repo = "fer-agathe/transport-simplex")
 library(transportsimplex)
 ```
 
