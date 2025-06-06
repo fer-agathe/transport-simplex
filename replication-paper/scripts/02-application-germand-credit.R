@@ -373,8 +373,8 @@ M0_glm_2 <- mapping_glm_2$plan * nrow(X0_glm_2)
 M0_rf <- mapping_rf$plan * nrow(X0_rf)
 M0_gbm <- mapping_gbm$plan * nrow(X0_gbm)
 
-# Let us focus on the 6th individual
-i <- 6
+# Let us focus on the 34th individual
+i <- 34 # change to 83 for the second example
 
 # Composition for this individual (representation of the categorical data in
 # the unit simplex)
@@ -542,24 +542,24 @@ ggtern(
 
 ## Closer look at the individual----
 german.credit[ind_0[i], "Purpose"]
-X0_glm_1[i, ]
+X0_glm_2[i, ]
 
 # Closest points:
-ind_close_points <- tail(order(weights_i_glm_1), 3)
-X1_glm_1[ind_close_points, ] |>
+ind_close_points <- tail(order(weights_i_glm_2), 3)
+X1_glm_2[ind_close_points, ] |>
   as_tibble() |>
   mutate(
     Purpose = german.credit[ind_1[ind_close_points], ] |> select(Purpose),
     index = ind_close_points,
-    weights_i = weights_i_glm_1[ind_close_points]) |>
+    weights_i = weights_i_glm_2[ind_close_points]) |>
   arrange(desc(weights_i)) |>
   kableExtra::kbl(booktabs = TRUE) |>
   kableExtra::kable_paper()
 
-# Counterfactual using GAM-MLR(1):
-cfact_i_glm_1
+# Counterfactual using GAM-MLR(2):
+cfact_i_glm_2
 # The counterfactual category would be:
-colnames(cfact_i_glm_1)[which.max(cfact_i_glm_1)]
+colnames(cfact_i_glm_2)[which.max(cfact_i_glm_2)]
 
 # Comparison with Gaussian OT (first method):
-transp_glm_1 |> slice(i)
+transp_glm_2 |> slice(i)

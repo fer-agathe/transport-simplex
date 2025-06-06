@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-11d96894dd7817e82423dfd1eea0dc7d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -322,9 +322,9 @@ Objectives
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
 ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
+✔ purrr     1.0.4     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -584,7 +584,7 @@ Table&nbsp;2.1: Mappings from the <code>purpose</code> categorical variable <spa
 Predicted Scores
 </div></th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Purpose</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Gender</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">cars</th>
@@ -848,7 +848,7 @@ Table&nbsp;2.2: Optimal transport using the <span class="math inline">\(\operato
 Purposes
 </div></th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th style="text-align: left;" data-quarto-table-cell-role="th">type</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Gender</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">cars</th>
@@ -1136,7 +1136,7 @@ Note
 </div>
 <p>Let us focus on a single individual <span class="math inline">\(x_{0,i}=\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">34</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For each model, we extract the representation of the <code>Purpose</code> characteristic in the simplex (i.e., the predicted scores by the <span class="math inline">\(k\)</span>-th model, <span class="math inline">\(\widehat{m}^{(k)}(\mathbf{x}_j|\mathbf{x}_{-j})\)</span>). Let us denote this composition as <span class="math inline">\(\mathbf{x}_{0,i}^{(k)}\)</span></p>
 <div class="cell">
@@ -1314,31 +1314,31 @@ Figure&nbsp;2.2: Empirical matching of a <span style="color:red;">woman</span> <
 </div>
 </div>
 </div>
-<p>To finish, let us look more closely to the i-th woman for which we have shown the counterfactual on the ternary plot. The value of the <code>Purpose</code> variable for her is equipment:</p>
+<p>To finish, let us look more closely to the i-th woman for which we have shown the counterfactual on the ternary plot. The value of the <code>Purpose</code> variable for her is other:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>german.credit[ind_0[i], <span class="st">"Purpose"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] equipment
+<pre><code>[1] other
 Levels: cars equipment other</code></pre>
 </div>
 </div>
-<p>Using the GAM-MLR(1) model, we obtained the following composition:</p>
+<p>Using the GAM-MLR(2) model, we obtained the following composition:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X0_glm_1[i, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X0_glm_2[i, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cars equipment     other 
-0.3014103 0.5126399 0.1859498 </code></pre>
+0.3697923 0.2381080 0.3920997 </code></pre>
 </div>
 </div>
 <p>The closest points in the group of men, obtained using <a href="./application-toydataset.html#alg-2">Algorithm 1.2</a> are:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ind_close_points <span class="ot">&lt;-</span> <span class="fu">tail</span>(<span class="fu">order</span>(weights_i_glm_1), <span class="dv">3</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>X1_glm_1[ind_close_points, ] <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ind_close_points <span class="ot">&lt;-</span> <span class="fu">tail</span>(<span class="fu">order</span>(weights_i_glm_2), <span class="dv">3</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>X1_glm_2[ind_close_points, ] <span class="sc">|&gt;</span> </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Purpose =</span> german.credit[ind_1[ind_close_points], ] <span class="sc">|&gt;</span> <span class="fu">select</span>(Purpose),</span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">index =</span> ind_close_points,</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">weights_i =</span> weights_i_glm_1[ind_close_points]) <span class="sc">|&gt;</span> </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">weights_i =</span> weights_i_glm_2[ind_close_points]) <span class="sc">|&gt;</span> </span>
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(weights_i)) <span class="sc">|&gt;</span> </span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_paper</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1356,28 +1356,28 @@ Levels: cars equipment other</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.2594298</td>
-<td style="text-align: right;">0.5805668</td>
-<td style="text-align: right;">0.1600034</td>
-<td style="text-align: left;">equipment</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">0.7057221</td>
+<td style="text-align: right;">0.3627510</td>
+<td style="text-align: right;">0.2817122</td>
+<td style="text-align: right;">0.3555368</td>
+<td style="text-align: left;">other</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">0.5483871</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">0.2596327</td>
-<td style="text-align: right;">0.5786692</td>
-<td style="text-align: right;">0.1616980</td>
-<td style="text-align: left;">equipment</td>
-<td style="text-align: right;">213</td>
-<td style="text-align: right;">0.2942377</td>
+<td style="text-align: right;">0.3993449</td>
+<td style="text-align: right;">0.3155724</td>
+<td style="text-align: right;">0.2850827</td>
+<td style="text-align: left;">other</td>
+<td style="text-align: right;">133</td>
+<td style="text-align: right;">0.2258065</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">0.5774855</td>
-<td style="text-align: right;">0.1482791</td>
-<td style="text-align: right;">0.2742354</td>
+<td style="text-align: right;">0.4232457</td>
+<td style="text-align: right;">0.2865582</td>
+<td style="text-align: right;">0.2901962</td>
 <td style="text-align: left;">equipment</td>
-<td style="text-align: right;">298</td>
-<td style="text-align: right;">0.0000136</td>
+<td style="text-align: right;">275</td>
+<td style="text-align: right;">0.2258065</td>
 </tr>
 </tbody>
 </table>
@@ -1385,30 +1385,30 @@ Levels: cars equipment other</code></pre>
 
 </div>
 </div>
-<p>The weight of the third closest man is really low compared to that of the first two. For the first two closest men, <span class="math inline">\(x_{1,j}=\)</span> equipment. So, it would make sense to suppose that the counterfactual version of woman <span class="math inline">\(i\)</span> with an “equipment” credit is a man with the same purpose.</p>
+<p>For the first two closest men, <span class="math inline">\(x_{1,j}=\)</span> other. So, it would make sense to suppose that the counterfactual version of woman <span class="math inline">\(i\)</span> with an “other” credit is a man with the same purpose.</p>
 <p>The counterfactual version for the composition is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cfact_i_glm_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cfact_i_glm_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          cars equipment     other
-[1,] 0.2594858 0.5800124 0.1605018</code></pre>
+[1,] 0.3846742 0.2904523 0.3248735</code></pre>
 </div>
 </div>
 <p>The counterfactual categorical value would thus be:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cfact_i_glm_1)[<span class="fu">which.max</span>(cfact_i_glm_1)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cfact_i_glm_2)[<span class="fu">which.max</span>(cfact_i_glm_2)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "equipment"</code></pre>
+<pre><code>[1] "cars"</code></pre>
 </div>
 </div>
 <p>For comparison, using Gaussian OT, the counterfactual would be:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>transp_glm_1 <span class="sc">|&gt;</span> <span class="fu">slice</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>transp_glm_2 <span class="sc">|&gt;</span> <span class="fu">slice</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
    cars equipment other
   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-1 0.263     0.575 0.162</code></pre>
+1 0.347     0.286 0.368</code></pre>
 </div>
 </div>
 
@@ -1503,8 +1503,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1615,7 +1613,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
