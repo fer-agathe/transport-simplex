@@ -548,8 +548,12 @@ ggtern(
   labs(x = "Married", y = "Never-married", z = "Separated") +
   theme_paper() +
   theme(
-    tern.axis.title = element_text(size = rel(.8))
-  )
+    tern.axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 ## Optimal Transport in $\mathcal{S}_3$
@@ -771,8 +775,12 @@ ggtern(
   scale_size_continuous(range = c(0, 1), guide = "none") +
   theme_paper() +
   theme(
-    tern.axis.title = element_text(size = rel(.8))
-  )
+    tern.axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 To finish, let us look more closely to the i-th woman for which we have shown the counterfactual on the ternary plot. The value of the `marital_status` variable for her is `r as.character(adult_subset[ind_0[i], "marital_status"])`:

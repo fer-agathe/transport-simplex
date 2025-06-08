@@ -361,7 +361,13 @@ Objectives
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-ternary1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -452,7 +458,7 @@ Note
 \boldsymbol{\Sigma}_t = \boldsymbol{\Sigma}_0^{-1/2} \left( (1 - t) \boldsymbol{\Sigma}_0 + t \left( \boldsymbol{\Sigma}_0^{1/2} \boldsymbol{\Sigma}_1 \boldsymbol{\Sigma}_0^{1/2} \right)^{1/2} \right)^2 \boldsymbol{\Sigma}_0^{-1/2}.
 \]</span></p>
 <p>We use</p>
-<div id="alg-1" class="pseudocode-container quarto-float" data-chapter-level="1" data-caption-prefix="Algorithm" data-comment-delimiter="//" data-pseudocode-number="1" data-indent-size="1.2em" data-no-end="false" data-line-number="true" data-line-number-punc=":">
+<div id="alg-1" class="pseudocode-container quarto-float" data-line-number-punc=":" data-chapter-level="1" data-indent-size="1.2em" data-caption-prefix="Algorithm" data-line-number="true" data-comment-delimiter="//" data-no-end="false" data-pseudocode-number="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{Gaussian Based Transport of $\mathbf{x}_0$ on $\mathcal{S}_d$} \begin{algorithmic} \STATE \textbf{Input:} $\mathbf{x}_0$ ($\in\mathcal{S}_d$)\\ \STATE \textbf{Parameter:} $\{\mathbf{x}_{0,1},\cdots,\mathbf{x}_{0,n_0}\}$ and $\{\mathbf{x}_{1,1},\cdots,\mathbf{x}_{1,n_1}\}$ in $\mathcal{S}_d$;\\ \STATE $\quad$ isomorphic transformation $h:\mathcal{S}_d\to\mathbb{R}^{d-1}$\\ \STATE \textbf{Output}: $\mathbf{x}_{1}$\\ \For{$i\in\{1,\cdots,n_0\}$} \STATE $\mathbf{z}_{0,i}\gets h(\mathbf{x}_{0,i})$ \EndFor \For{$i\in\{1,\cdots,n_1\}$} \STATE $\mathbf{z}_{1,i}\gets h(\mathbf{x}_{1,i})$ \EndFor \STATE $\mathbf{m}_0\gets$ average of $\{\mathbf{z}_{0,1},\cdots,\mathbf{z}_{0,n_0}\}$\\ \STATE $\mathbf{m}_1\gets$ average of $\{\mathbf{z}_{1,1},\cdots,\mathbf{z}_{1,n_1}\}$\\ \STATE $\mathbf{S}_0\gets$ empirical variance matrix of $\{\mathbf{z}_{0,1},\cdots,\mathbf{z}_{0,n_0}\}$\\ \STATE $\mathbf{S}_1\gets$ empirical variance matrix of $\{\mathbf{z}_{1,1},\cdots,\mathbf{z}_{1,n_1}\}$\\ \STATE $\boldsymbol{A}\gets \boldsymbol{S}_{0}^{-1/2}\big(\boldsymbol{S}_{0}^{1/2}\boldsymbol{S}_{1}\boldsymbol{S}_{0}^{1/2}\big)^{1/2}\boldsymbol{S}_{0}^{-1/2}$\\ \STATE $\mathbf{x}_{1} \gets \displaystyle{h^{-1}\big(\mathbf{m}_{1} + \boldsymbol{A}(h(\mathbf{x}_{0})-\mathbf{m}_{0})\big)}$\\ \end{algorithmic} \end{algorithm}
 </div>
@@ -946,7 +952,13 @@ Note
 <span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> id_obs)</span>
 <span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-clr-toydataset" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1002,7 +1014,13 @@ Figure&nbsp;1.2: Counterfactuals using the clr transformation and Gaussian optim
 <span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> id_obs)</span>
 <span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-alr-toydataset" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1058,7 +1076,13 @@ Figure&nbsp;1.3: Counterfactuals using the alr transformation and Gaussian optim
 <span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> id_obs)</span>
 <span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-ilr-toydataset" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1236,18 +1260,120 @@ Figure&nbsp;1.5: Optimal transport in <span class="math inline">\(\mathbb{R}^2\)
 </div>
 </div>
 </div>
+<p>We can also visualize the estimation of density of the Dirichlet distributions fitted on the dataset (using {VGAM}). First,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtern</span>(</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset, </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_tern</span>(</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"polygon"</span>,</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>dir_0 <span class="ot">&lt;-</span> VGAM<span class="sc">::</span><span class="fu">vglm</span>(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(A,B,C)  <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  VGAM<span class="sc">::</span>dirichlet,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="at">crit =</span> <span class="st">"coef"</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>dir_1 <span class="ot">&lt;-</span> VGAM<span class="sc">::</span><span class="fu">vglm</span>(</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(A,B,C)  <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  VGAM<span class="sc">::</span>dirichlet,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="at">crit =</span> <span class="st">"coef"</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>VGAM<span class="sc">::</span><span class="fu">Coef</span>(dir_0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   shape1    shape2    shape3 
+15.103469  6.495072 12.885080 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>VGAM<span class="sc">::</span><span class="fu">Coef</span>(dir_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   shape1    shape2    shape3 
+ 9.211557 14.880295  6.655682 </code></pre>
+</div>
+</div>
+<p>We prepare a grid to visualize the estimated densities.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> u[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(u))]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(u, u)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, <span class="at">w =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">rowSums</span>(x))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only valid points inside the simplex</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="fu">rowSums</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="sc">==</span> <span class="dv">3</span>, ]</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Density for the Dirichlet distribution</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>z_0 <span class="ot">&lt;-</span> gtools<span class="sc">::</span><span class="fu">ddirichlet</span>(x, <span class="at">alpha =</span> VGAM<span class="sc">::</span><span class="fu">Coef</span>(dir_0))</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>z_1 <span class="ot">&lt;-</span> gtools<span class="sc">::</span><span class="fu">ddirichlet</span>(x, <span class="at">alpha =</span> VGAM<span class="sc">::</span><span class="fu">Coef</span>(dir_1))</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>z_0[<span class="fu">is.infinite</span>(z_0)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>z_1[<span class="fu">is.infinite</span>(z_1)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix for contouring</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>mat_0 <span class="ot">&lt;-</span> mat_1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="fu">length</span>(u), <span class="fu">length</span>(u))</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(x))) {</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  iu <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(u <span class="sc">-</span> x[i, <span class="dv">1</span>]))</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  iv <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(u <span class="sc">-</span> x[i, <span class="dv">2</span>]))</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>  mat_0[iu, iv] <span class="ot">&lt;-</span> z_0[i]</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  mat_1[iu, iv] <span class="ot">&lt;-</span> z_1[i]</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract contour lines</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>CL_0 <span class="ot">&lt;-</span> <span class="fu">contourLines</span>(u, u, mat_0)</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>CL_1 <span class="ot">&lt;-</span> <span class="fu">contourLines</span>(u, u, mat_1)</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Format in a data frame with ternary coordinates</span></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>contour_df_0 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(</span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq_along</span>(CL_0), <span class="cf">function</span>(i) {</span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>      L <span class="ot">&lt;-</span> CL_0[[i]]</span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tibble</span>(</span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> L<span class="sc">$</span>x,</span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> L<span class="sc">$</span>y,</span>
+<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> <span class="dv">1</span> <span class="sc">-</span> L<span class="sc">$</span>x <span class="sc">-</span> L<span class="sc">$</span>y,</span>
+<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">group_obs =</span> i,</span>
+<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> L<span class="sc">$</span>level</span>
+<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a>contour_df_1 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
+<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
+<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(</span>
+<span id="cb43-45"><a href="#cb43-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq_along</span>(CL_1), <span class="cf">function</span>(i) {</span>
+<span id="cb43-46"><a href="#cb43-46" aria-hidden="true" tabindex="-1"></a>      L <span class="ot">&lt;-</span> CL_1[[i]]</span>
+<span id="cb43-47"><a href="#cb43-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tibble</span>(</span>
+<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> L<span class="sc">$</span>x,</span>
+<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> L<span class="sc">$</span>y,</span>
+<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> <span class="dv">1</span> <span class="sc">-</span> L<span class="sc">$</span>x <span class="sc">-</span> L<span class="sc">$</span>y,</span>
+<span id="cb43-51"><a href="#cb43-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">group_obs =</span> i,</span>
+<span id="cb43-52"><a href="#cb43-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> L<span class="sc">$</span>level</span>
+<span id="cb43-53"><a href="#cb43-53" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb43-54"><a href="#cb43-54" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb43-55"><a href="#cb43-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-56"><a href="#cb43-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-57"><a href="#cb43-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-58"><a href="#cb43-58" aria-hidden="true" tabindex="-1"></a>contour_df <span class="ot">&lt;-</span></span>
+<span id="cb43-59"><a href="#cb43-59" aria-hidden="true" tabindex="-1"></a>  contour_df_0 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">group =</span> <span class="st">"0"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-60"><a href="#cb43-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(contour_df_1 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">group =</span> <span class="st">"1"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb43-61"><a href="#cb43-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">A =</span> x, <span class="at">B =</span> y, <span class="at">C =</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The estimated densities are shown in <a href="#fig-ternary-toydataset-densities" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtern</span>() <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add points</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> toydataset,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group),</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">0.5</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add contour lines</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> contour_df,</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">group =</span> group_obs, <span class="at">colour =</span> group),</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> .<span class="dv">1</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> group) <span class="sc">+</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups) <span class="sc">+</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-ternary-toydataset-densities" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1287,203 +1413,203 @@ U(n_{0},n_{1})=\left\lbrace
 \right\rbrace,
 \tag{1.7}\]</span></span> and where <span class="math inline">\(\mathrm{C}\)</span> denotes the <span class="math inline">\({n_{0}}\times {n_{1}}\)</span> cost matrix, <span class="math inline">\(\mathrm{C}_{i,j}=c(\mathbf{x}_i,\mathbf{x}_{j})\)</span>, associated with cost from Equation (<a href="#eq-cost" class="quarto-xref">Equation&nbsp;<span>1.4</span></a>).</p>
 <p>Let us use the procedure explained in <span class="citation" data-cites="peyre2019computational">Peyré, Cuturi, et al. (<a href="references.html#ref-peyre2019computational" role="doc-biblioref">2019</a>)</span> (with a specific cost function, from <a href="#eq-cost" class="quarto-xref">Equation&nbsp;<span>1.4</span></a>) to couple samples on <span class="math inline">\(\mathcal{S}_d\)</span>, summarized in <a href="#alg-2" class="quarto-xref">Algorithm 1.2</a>.</p>
-<div id="alg-2" class="pseudocode-container quarto-float" data-chapter-level="1" data-caption-prefix="Algorithm" data-comment-delimiter="//" data-pseudocode-number="2" data-indent-size="1.2em" data-no-end="false" data-line-number="true" data-line-number-punc=":">
+<div id="alg-2" class="pseudocode-container quarto-float" data-line-number-punc=":" data-chapter-level="1" data-indent-size="1.2em" data-caption-prefix="Algorithm" data-line-number="true" data-comment-delimiter="//" data-no-end="false" data-pseudocode-number="2">
 <div class="pseudocode">
 \begin{algorithm} \caption{Coupling samples on $\mathcal{S}_d$} \begin{algorithmic} \STATE \textbf{Input:} $\{\mathbf{x}_{0,1},\cdots,\mathbf{x}_{0,n_0}\}$ and $\{\mathbf{x}_{1,1},\cdots,\mathbf{x}_{1,n_1}\}$ in $\mathcal{S}_d$;\\ \STATE \textbf{Input:} weight matching matrix $n_0\times n_1$ $\mathbf{P}^*$\\ \STATE $\mathbf{C} \gets $ matrix $n_0\times n_1$, $\mathbf{C}_{i,j}=c(\mathbf{x}_i,\mathbf{x}_j)$\\ \STATE $\mathbf{P}^\star \gets$ solution the discrete Kantorovich problem, using LP libraries \end{algorithmic} \end{algorithm}
 </div>
 </div>
 <p>First, we define the cost function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Cost function for optimal transport on the unit simplex</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>d_s <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="fu">mean</span>(y <span class="sc">/</span> x)) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">log</span>(y <span class="sc">/</span> x))</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Cost function for optimal transport on the unit simplex</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>d_s <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="fu">mean</span>(y <span class="sc">/</span> x)) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">log</span>(y <span class="sc">/</span> x))</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we need to define a few helper functions to solve the optimal transport problem.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>A few helper functions.</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Pairwise distance matrix on the simplex</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Computes the pairwise distance matrix of observations in the simplex, using</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' the cost function for optimal transport on the unit simplex as the distance</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' metric.</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X Matrice of observations (one observation per row).</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param Y Matrice of observations (one observation per row).</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A matrix of size m x n, where m is the number of observation in X,</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'  and n is the number of observations in X, containing the distances between</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'  observations in X and Y.</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>compute_pdist_simplex <span class="ot">&lt;-</span> <span class="cf">function</span>(X, Y) {</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(X), <span class="fu">nrow</span>(Y))</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(X)) {</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Y)) {</span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>      M[i, j] <span class="ot">&lt;-</span> <span class="fu">d_s</span>(X[i, ], Y[j, ])</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  M</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' Ensures that a weight vector (marginal distribution) is valid</span></span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' Returns a uniform weight if the provided vector if NULL. Otherwise, checks</span></span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' if the vector has length M and nonnegative entries, and if so, normalizes</span></span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' the vector of weights to sum to 1.</span></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param mvec (Optional) Vector of weights.</span></span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param M Length of the weight vector.</span></span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fname Name of the distance used (string).</span></span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>valid_single_marginal <span class="ot">&lt;-</span> <span class="cf">function</span>(mvec, M, fname) {</span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>  dname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"'"</span>, <span class="fu">deparse</span>(<span class="fu">substitute</span>(mvec)), <span class="st">"'"</span>)</span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((<span class="fu">length</span>(mvec) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">&amp;&amp;</span> <span class="fu">is.null</span>(mvec)) {</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> M, M))</span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>    mvec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(mvec)</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ((<span class="fu">length</span>(mvec) <span class="sc">!=</span> M) <span class="sc">||</span> (<span class="fu">any</span>(mvec <span class="sc">&lt;</span> <span class="dv">0</span>))) {</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste0</span>(</span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>          <span class="st">"* "</span>, fname, <span class="st">" : "</span>, dname,</span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>          <span class="st">" should be a nonnegative vector of length "</span>,M,<span class="st">"."</span></span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(mvec <span class="sc">/</span> base<span class="sc">::</span><span class="fu">sum</span>(mvec))</span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' Solving the Optimal Transport Problem</span></span>
-<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' Finds the optimal transport plan using linear programming.</span></span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a><span class="co">#' In a first attempts, it uses `CVXR::solve` with the OSQP solver.</span></span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a><span class="co">#' If this fails, it uses `lpSolve::lp` instead.</span></span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function minimizes the transport cost while ensuring:</span></span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="co">#' * Mass conservation (row and column sums match the marginals).</span></span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="co">#' * Nonnegative transport flows.</span></span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param dxy Cost matrix of transport distances between points in X and Y.</span></span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wx Weights (marginal distribution) for X.</span></span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wy Weights (marginal distribution) for Y.</span></span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param p Order of the Wassterstein distance. (If p=2: squared Euclidean</span></span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a><span class="co">#'  cost).</span></span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom CVXR Variable Minimize matrix_trace Problem solve</span></span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom lpSolve lp</span></span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
-<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a>wass_lp <span class="ot">&lt;-</span> <span class="cf">function</span>(dxy,</span>
-<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a>                    wx,</span>
-<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a>                    wy,</span>
-<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a>                    p) {</span>
-<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a>  cxy    <span class="ot">&lt;-</span> (dxy)</span>
-<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a>  m      <span class="ot">&lt;-</span> <span class="fu">length</span>(wx)</span>
-<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a>  ww_m   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(wx, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a>  n      <span class="ot">&lt;-</span> <span class="fu">length</span>(wy)</span>
-<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a>  ww_n   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(wy, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a>  ones_m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, n), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a>  ones_n <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, m), <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a>  plan   <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Variable</span>(m, n)</span>
-<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a>  wd.obj    <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Minimize</span>(CVXR<span class="sc">::</span><span class="fu">matrix_trace</span>(<span class="fu">t</span>(cxy) <span class="sc">%*%</span> plan))</span>
-<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a>  wd.const1 <span class="ot">&lt;-</span> <span class="fu">list</span>(plan <span class="sc">&gt;=</span> <span class="dv">0</span>)</span>
-<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a>  wd.const2 <span class="ot">&lt;-</span> <span class="fu">list</span>(plan <span class="sc">%*%</span> ones_m <span class="sc">==</span> ww_m, ones_n <span class="sc">%*%</span> plan <span class="sc">==</span> ww_n)</span>
-<span id="cb41-90"><a href="#cb41-90" aria-hidden="true" tabindex="-1"></a>  wd.prob   <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Problem</span>(wd.obj, <span class="fu">c</span>(wd.const1, wd.const2))</span>
-<span id="cb41-91"><a href="#cb41-91" aria-hidden="true" tabindex="-1"></a>  wd.solve  <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">solve</span>(wd.prob, <span class="at">solver =</span> <span class="st">"OSQP"</span>)</span>
-<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-93"><a href="#cb41-93" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(wd.solve<span class="sc">$</span>status<span class="sc">==</span><span class="st">"optimal"</span>)) {</span>
-<span id="cb41-94"><a href="#cb41-94" aria-hidden="true" tabindex="-1"></a>    <span class="co"># successful</span></span>
-<span id="cb41-95"><a href="#cb41-95" aria-hidden="true" tabindex="-1"></a>    gamma <span class="ot">&lt;-</span> wd.solve<span class="sc">$</span><span class="fu">getValue</span>(plan)</span>
-<span id="cb41-96"><a href="#cb41-96" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> (base<span class="sc">::</span><span class="fu">sum</span>(gamma <span class="sc">*</span> cxy))</span>
-<span id="cb41-97"><a href="#cb41-97" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># failed : use lpsolve</span></span>
-<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a>    cxy <span class="ot">&lt;-</span> (dxy)</span>
-<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a>    m   <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cxy)</span>
-<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a>    n   <span class="ot">&lt;-</span> <span class="fu">ncol</span>(cxy)</span>
-<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a>    c  <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(cxy)</span>
-<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a>    A1 <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">kronecker</span>(<span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> n), <span class="fu">diag</span>(m))</span>
-<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a>    A2 <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">kronecker</span>(<span class="fu">diag</span>(n), <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> m))</span>
-<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a>    A  <span class="ot">&lt;-</span> <span class="fu">rbind</span>(A1, A2)</span>
-<span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a>    f.obj <span class="ot">&lt;-</span> c</span>
-<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a>    f.con <span class="ot">&lt;-</span> A</span>
-<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a>    f.dir <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"=="</span>, <span class="fu">nrow</span>(A))</span>
-<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a>    f.rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> m, m), <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> n, n))</span>
-<span id="cb41-112"><a href="#cb41-112" aria-hidden="true" tabindex="-1"></a>    f.sol <span class="ot">&lt;-</span> (lpSolve<span class="sc">::</span><span class="fu">lp</span>(<span class="st">"min"</span>, f.obj, f.con, f.dir, f.rhs))</span>
-<span id="cb41-113"><a href="#cb41-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a>    gamma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(f.sol<span class="sc">$</span>solution, <span class="at">nrow =</span> m)</span>
-<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> (<span class="fu">sum</span>(gamma<span class="sc">*</span>cxy)<span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> p))</span>
-<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">distance =</span> value, <span class="at">plan =</span> gamma)</span>
-<span id="cb41-118"><a href="#cb41-118" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Pairwise distance matrix on the simplex</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Computes the pairwise distance matrix of observations in the simplex, using</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' the cost function for optimal transport on the unit simplex as the distance</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' metric.</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X Matrice of observations (one observation per row).</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param Y Matrice of observations (one observation per row).</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A matrix of size m x n, where m is the number of observation in X,</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'  and n is the number of observations in X, containing the distances between</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'  observations in X and Y.</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>compute_pdist_simplex <span class="ot">&lt;-</span> <span class="cf">function</span>(X, Y) {</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(X), <span class="fu">nrow</span>(Y))</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(X)) {</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Y)) {</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>      M[i, j] <span class="ot">&lt;-</span> <span class="fu">d_s</span>(X[i, ], Y[j, ])</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>  M</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' Ensures that a weight vector (marginal distribution) is valid</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' Returns a uniform weight if the provided vector if NULL. Otherwise, checks</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' if the vector has length M and nonnegative entries, and if so, normalizes</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' the vector of weights to sum to 1.</span></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param mvec (Optional) Vector of weights.</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param M Length of the weight vector.</span></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fname Name of the distance used (string).</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>valid_single_marginal <span class="ot">&lt;-</span> <span class="cf">function</span>(mvec, M, fname) {</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>  dname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"'"</span>, <span class="fu">deparse</span>(<span class="fu">substitute</span>(mvec)), <span class="st">"'"</span>)</span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((<span class="fu">length</span>(mvec) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">&amp;&amp;</span> <span class="fu">is.null</span>(mvec)) {</span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> M, M))</span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>    mvec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(mvec)</span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ((<span class="fu">length</span>(mvec) <span class="sc">!=</span> M) <span class="sc">||</span> (<span class="fu">any</span>(mvec <span class="sc">&lt;</span> <span class="dv">0</span>))) {</span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(</span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste0</span>(</span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>          <span class="st">"* "</span>, fname, <span class="st">" : "</span>, dname,</span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>          <span class="st">" should be a nonnegative vector of length "</span>,M,<span class="st">"."</span></span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(mvec <span class="sc">/</span> base<span class="sc">::</span><span class="fu">sum</span>(mvec))</span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' Solving the Optimal Transport Problem</span></span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' Finds the optimal transport plan using linear programming.</span></span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a><span class="co">#' In a first attempts, it uses `CVXR::solve` with the OSQP solver.</span></span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a><span class="co">#' If this fails, it uses `lpSolve::lp` instead.</span></span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function minimizes the transport cost while ensuring:</span></span>
+<span id="cb46-61"><a href="#cb46-61" aria-hidden="true" tabindex="-1"></a><span class="co">#' * Mass conservation (row and column sums match the marginals).</span></span>
+<span id="cb46-62"><a href="#cb46-62" aria-hidden="true" tabindex="-1"></a><span class="co">#' * Nonnegative transport flows.</span></span>
+<span id="cb46-63"><a href="#cb46-63" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-64"><a href="#cb46-64" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param dxy Cost matrix of transport distances between points in X and Y.</span></span>
+<span id="cb46-65"><a href="#cb46-65" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wx Weights (marginal distribution) for X.</span></span>
+<span id="cb46-66"><a href="#cb46-66" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wy Weights (marginal distribution) for Y.</span></span>
+<span id="cb46-67"><a href="#cb46-67" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param p Order of the Wassterstein distance. (If p=2: squared Euclidean</span></span>
+<span id="cb46-68"><a href="#cb46-68" aria-hidden="true" tabindex="-1"></a><span class="co">#'  cost).</span></span>
+<span id="cb46-69"><a href="#cb46-69" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-70"><a href="#cb46-70" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom CVXR Variable Minimize matrix_trace Problem solve</span></span>
+<span id="cb46-71"><a href="#cb46-71" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom lpSolve lp</span></span>
+<span id="cb46-72"><a href="#cb46-72" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-73"><a href="#cb46-73" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd</span></span>
+<span id="cb46-74"><a href="#cb46-74" aria-hidden="true" tabindex="-1"></a>wass_lp <span class="ot">&lt;-</span> <span class="cf">function</span>(dxy,</span>
+<span id="cb46-75"><a href="#cb46-75" aria-hidden="true" tabindex="-1"></a>                    wx,</span>
+<span id="cb46-76"><a href="#cb46-76" aria-hidden="true" tabindex="-1"></a>                    wy,</span>
+<span id="cb46-77"><a href="#cb46-77" aria-hidden="true" tabindex="-1"></a>                    p) {</span>
+<span id="cb46-78"><a href="#cb46-78" aria-hidden="true" tabindex="-1"></a>  cxy    <span class="ot">&lt;-</span> (dxy)</span>
+<span id="cb46-79"><a href="#cb46-79" aria-hidden="true" tabindex="-1"></a>  m      <span class="ot">&lt;-</span> <span class="fu">length</span>(wx)</span>
+<span id="cb46-80"><a href="#cb46-80" aria-hidden="true" tabindex="-1"></a>  ww_m   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(wx, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb46-81"><a href="#cb46-81" aria-hidden="true" tabindex="-1"></a>  n      <span class="ot">&lt;-</span> <span class="fu">length</span>(wy)</span>
+<span id="cb46-82"><a href="#cb46-82" aria-hidden="true" tabindex="-1"></a>  ww_n   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(wy, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb46-83"><a href="#cb46-83" aria-hidden="true" tabindex="-1"></a>  ones_m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, n), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb46-84"><a href="#cb46-84" aria-hidden="true" tabindex="-1"></a>  ones_n <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>, m), <span class="at">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb46-85"><a href="#cb46-85" aria-hidden="true" tabindex="-1"></a>  plan   <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Variable</span>(m, n)</span>
+<span id="cb46-86"><a href="#cb46-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-87"><a href="#cb46-87" aria-hidden="true" tabindex="-1"></a>  wd.obj    <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Minimize</span>(CVXR<span class="sc">::</span><span class="fu">matrix_trace</span>(<span class="fu">t</span>(cxy) <span class="sc">%*%</span> plan))</span>
+<span id="cb46-88"><a href="#cb46-88" aria-hidden="true" tabindex="-1"></a>  wd.const1 <span class="ot">&lt;-</span> <span class="fu">list</span>(plan <span class="sc">&gt;=</span> <span class="dv">0</span>)</span>
+<span id="cb46-89"><a href="#cb46-89" aria-hidden="true" tabindex="-1"></a>  wd.const2 <span class="ot">&lt;-</span> <span class="fu">list</span>(plan <span class="sc">%*%</span> ones_m <span class="sc">==</span> ww_m, ones_n <span class="sc">%*%</span> plan <span class="sc">==</span> ww_n)</span>
+<span id="cb46-90"><a href="#cb46-90" aria-hidden="true" tabindex="-1"></a>  wd.prob   <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">Problem</span>(wd.obj, <span class="fu">c</span>(wd.const1, wd.const2))</span>
+<span id="cb46-91"><a href="#cb46-91" aria-hidden="true" tabindex="-1"></a>  wd.solve  <span class="ot">&lt;-</span> CVXR<span class="sc">::</span><span class="fu">solve</span>(wd.prob, <span class="at">solver =</span> <span class="st">"OSQP"</span>)</span>
+<span id="cb46-92"><a href="#cb46-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-93"><a href="#cb46-93" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(wd.solve<span class="sc">$</span>status<span class="sc">==</span><span class="st">"optimal"</span>)) {</span>
+<span id="cb46-94"><a href="#cb46-94" aria-hidden="true" tabindex="-1"></a>    <span class="co"># successful</span></span>
+<span id="cb46-95"><a href="#cb46-95" aria-hidden="true" tabindex="-1"></a>    gamma <span class="ot">&lt;-</span> wd.solve<span class="sc">$</span><span class="fu">getValue</span>(plan)</span>
+<span id="cb46-96"><a href="#cb46-96" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> (base<span class="sc">::</span><span class="fu">sum</span>(gamma <span class="sc">*</span> cxy))</span>
+<span id="cb46-97"><a href="#cb46-97" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb46-98"><a href="#cb46-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># failed : use lpsolve</span></span>
+<span id="cb46-99"><a href="#cb46-99" aria-hidden="true" tabindex="-1"></a>    cxy <span class="ot">&lt;-</span> (dxy)</span>
+<span id="cb46-100"><a href="#cb46-100" aria-hidden="true" tabindex="-1"></a>    m   <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cxy)</span>
+<span id="cb46-101"><a href="#cb46-101" aria-hidden="true" tabindex="-1"></a>    n   <span class="ot">&lt;-</span> <span class="fu">ncol</span>(cxy)</span>
+<span id="cb46-102"><a href="#cb46-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-103"><a href="#cb46-103" aria-hidden="true" tabindex="-1"></a>    c  <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(cxy)</span>
+<span id="cb46-104"><a href="#cb46-104" aria-hidden="true" tabindex="-1"></a>    A1 <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">kronecker</span>(<span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> n), <span class="fu">diag</span>(m))</span>
+<span id="cb46-105"><a href="#cb46-105" aria-hidden="true" tabindex="-1"></a>    A2 <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">kronecker</span>(<span class="fu">diag</span>(n), <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> m))</span>
+<span id="cb46-106"><a href="#cb46-106" aria-hidden="true" tabindex="-1"></a>    A  <span class="ot">&lt;-</span> <span class="fu">rbind</span>(A1, A2)</span>
+<span id="cb46-107"><a href="#cb46-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-108"><a href="#cb46-108" aria-hidden="true" tabindex="-1"></a>    f.obj <span class="ot">&lt;-</span> c</span>
+<span id="cb46-109"><a href="#cb46-109" aria-hidden="true" tabindex="-1"></a>    f.con <span class="ot">&lt;-</span> A</span>
+<span id="cb46-110"><a href="#cb46-110" aria-hidden="true" tabindex="-1"></a>    f.dir <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"=="</span>, <span class="fu">nrow</span>(A))</span>
+<span id="cb46-111"><a href="#cb46-111" aria-hidden="true" tabindex="-1"></a>    f.rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> m, m), <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> n, n))</span>
+<span id="cb46-112"><a href="#cb46-112" aria-hidden="true" tabindex="-1"></a>    f.sol <span class="ot">&lt;-</span> (lpSolve<span class="sc">::</span><span class="fu">lp</span>(<span class="st">"min"</span>, f.obj, f.con, f.dir, f.rhs))</span>
+<span id="cb46-113"><a href="#cb46-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-114"><a href="#cb46-114" aria-hidden="true" tabindex="-1"></a>    gamma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(f.sol<span class="sc">$</span>solution, <span class="at">nrow =</span> m)</span>
+<span id="cb46-115"><a href="#cb46-115" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> (<span class="fu">sum</span>(gamma<span class="sc">*</span>cxy)<span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> p))</span>
+<span id="cb46-116"><a href="#cb46-116" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-117"><a href="#cb46-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">distance =</span> value, <span class="at">plan =</span> gamma)</span>
+<span id="cb46-118"><a href="#cb46-118" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The main function is the following, <code class="sourceCode r"><span class="fu">wasserstein_simplex</span>()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Wasserstein distance between two sets of probability vectors X and Y</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X Matrix of probability vectors in a first group.</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param Y Matrix of probability vectors in a second group.</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wx Weights (marginal distribution) for X. Default to `NULL` (uniform</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' weights will be used).</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wy Weights (marginal distribution) for Y. Default to `NULL` (uniform</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' weights will be used).</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A list with two elements:</span></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' * `distance`: the Wassterstein distance</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' * `plan`: the optimal transport plan describing how mass is transported</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'   between X and Y.</span></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>wasserstein_simplex <span class="ot">&lt;-</span> <span class="cf">function</span>(X,</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>                                Y,</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">wx =</span> <span class="cn">NULL</span>,</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">wy =</span> <span class="cn">NULL</span>) {</span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## CHECK INPUTS</span></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(X)) {</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(X, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(Y)) {</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    Y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(Y, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X)) { <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'X' should be a matrix."</span>) }</span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(Y)) { <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'Y' should be a matrix."</span>) }</span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (base<span class="sc">::</span><span class="fu">ncol</span>(X) <span class="sc">!=</span> base<span class="sc">::</span><span class="fu">ncol</span>(Y)){</span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'X' and 'Y' should be of same dimension."</span>)</span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of observation in each matrix</span></span>
-<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">nrow</span>(X)</span>
-<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">nrow</span>(Y)</span>
-<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>  wxname <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"'"</span>,<span class="fu">deparse</span>(<span class="fu">substitute</span>(wx)),<span class="st">"'"</span>)</span>
-<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>  wyname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"'"</span>,<span class="fu">deparse</span>(<span class="fu">substitute</span>(wy)),<span class="st">"'"</span>)</span>
-<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>  fname  <span class="ot">&lt;-</span> <span class="st">"wasserstein"</span></span>
-<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Weight normalization</span></span>
-<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>  par_wx <span class="ot">&lt;-</span> <span class="fu">valid_single_marginal</span>(wx, m, fname)</span>
-<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>  par_wy <span class="ot">&lt;-</span> <span class="fu">valid_single_marginal</span>(wy, n, fname)</span>
-<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cost matrix</span></span>
-<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>  dist_mat  <span class="ot">&lt;-</span> <span class="fu">compute_pdist_simplex</span>(X, Y)</span>
-<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Solve the optimal transport problem</span></span>
-<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wass_lp</span>(dist_mat, par_wx, par_wy, <span class="at">p =</span> <span class="dv">2</span>)</span>
-<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Wasserstein distance between two sets of probability vectors X and Y</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X Matrix of probability vectors in a first group.</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param Y Matrix of probability vectors in a second group.</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wx Weights (marginal distribution) for X. Default to `NULL` (uniform</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' weights will be used).</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param wy Weights (marginal distribution) for Y. Default to `NULL` (uniform</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' weights will be used).</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A list with two elements:</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' * `distance`: the Wassterstein distance</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' * `plan`: the optimal transport plan describing how mass is transported</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'   between X and Y.</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>wasserstein_simplex <span class="ot">&lt;-</span> <span class="cf">function</span>(X,</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>                                Y,</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">wx =</span> <span class="cn">NULL</span>,</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">wy =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## CHECK INPUTS</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(X)) {</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(X, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(Y)) {</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>    Y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(Y, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X)) { <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'X' should be a matrix."</span>) }</span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(Y)) { <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'Y' should be a matrix."</span>) }</span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (base<span class="sc">::</span><span class="fu">ncol</span>(X) <span class="sc">!=</span> base<span class="sc">::</span><span class="fu">ncol</span>(Y)){</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"* wasserstein : input 'X' and 'Y' should be of same dimension."</span>)</span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of observation in each matrix</span></span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">nrow</span>(X)</span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">nrow</span>(Y)</span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>  wxname <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"'"</span>,<span class="fu">deparse</span>(<span class="fu">substitute</span>(wx)),<span class="st">"'"</span>)</span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a>  wyname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"'"</span>,<span class="fu">deparse</span>(<span class="fu">substitute</span>(wy)),<span class="st">"'"</span>)</span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a>  fname  <span class="ot">&lt;-</span> <span class="st">"wasserstein"</span></span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Weight normalization</span></span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a>  par_wx <span class="ot">&lt;-</span> <span class="fu">valid_single_marginal</span>(wx, m, fname)</span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a>  par_wy <span class="ot">&lt;-</span> <span class="fu">valid_single_marginal</span>(wy, n, fname)</span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cost matrix</span></span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a>  dist_mat  <span class="ot">&lt;-</span> <span class="fu">compute_pdist_simplex</span>(X, Y)</span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Solve the optimal transport problem</span></span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wass_lp</span>(dist_mat, par_wx, par_wy, <span class="at">p =</span> <span class="dv">2</span>)</span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let us transform the tibble that contains the vectors of probabilities in each group in two matrices:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tP0 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X0)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>tP1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tP0 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X0)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>tP1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are <span class="math inline">\(m_0=38\)</span> observations in <span style="color: red;">group 0</span> and <span class="math inline">\(n_1=23\)</span> in <span style="color: blue;">group 1</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="fu">dim</span>(tP0), <span class="fu">dim</span>(tP1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="fu">dim</span>(tP0), <span class="fu">dim</span>(tP1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]   38    3
@@ -1492,18 +1618,18 @@ U(n_{0},n_{1})=\left\lbrace
 </div>
 <p>The Wasserstein distance and transport plan from <span style="color: red;">group 0</span> to <span style="color: blue;">group 1</span> is obtained as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>W_xy <span class="ot">&lt;-</span> <span class="fu">wasserstein_simplex</span>(tP0, tP1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>W_xy <span class="ot">&lt;-</span> <span class="fu">wasserstein_simplex</span>(tP0, tP1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The obtained transport plan is an <span class="math inline">\(n_0 \times n_1\)</span> matrix:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(W_xy<span class="sc">$</span>plan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(W_xy<span class="sc">$</span>plan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38 23</code></pre>
 </div>
 </div>
 <p>We can check if row sums match the uniform weights used (we did not provide weights in the <code class="sourceCode r"><span class="fu">wasserstein_simplex</span>()</code> function, so uniform weights were used).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(W_xy<span class="sc">$</span>plan, <span class="dv">1</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(W_xy<span class="sc">$</span>plan, <span class="dv">1</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579
  [7] 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579
@@ -1513,34 +1639,34 @@ U(n_{0},n_{1})=\left\lbrace
 [31] 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579 0.02631579
 [37] 0.02631579 0.02631579</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">nrow</span>(tP0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">nrow</span>(tP0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02631579</code></pre>
 </div>
 </div>
 <p>And the column sums:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(W_xy<span class="sc">$</span>plan, <span class="dv">2</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(W_xy<span class="sc">$</span>plan, <span class="dv">2</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826
  [7] 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826
 [13] 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826
 [19] 0.04347826 0.04347826 0.04347826 0.04347826 0.04347826</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">nrow</span>(tP1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">nrow</span>(tP1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.04347826</code></pre>
 </div>
 </div>
 <p>Scaling the transport plan to the original number of observations:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>M0 <span class="ot">&lt;-</span> W_xy<span class="sc">$</span>plan <span class="sc">*</span> <span class="fu">nrow</span>(X0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>M0 <span class="ot">&lt;-</span> W_xy<span class="sc">$</span>plan <span class="sc">*</span> <span class="fu">nrow</span>(X0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let us isolate the first observation in <span style="color: red;">group 0</span>. Since <span class="math inline">\(n_0\neq n_1\)</span>, the “counterfactual” of <span class="math inline">\(\mathbf{x}_{0,i}\)</span> is not obtained with a coupling: it is a weighted average of <span class="math inline">\(\mathbf{x}_{1,j}\)</span>, where weights are given in row <span class="math inline">\(\mathbf{P}^\star_i=[\mathbf{P}^\star_{i,1},\cdots,\mathbf{P}^\star_{i,n_1}]\in\mathcal{S}_{n_1}\)</span>.</p>
 <p>The weights <span class="math inline">\(\mathbf{P}^\star_1\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>M0[i, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>M0[i, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] -2.770445e-21  2.638607e-21  9.398934e-22 -5.803349e-21  4.220959e-21
  [6]  9.831785e-22 -2.242821e-21 -1.121761e-21  4.748530e-21 -9.240347e-22
@@ -1551,16 +1677,16 @@ U(n_{0},n_{1})=\left\lbrace
 </div>
 <p>We can notice that the 17 observation has a larger weight:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(M0[i, ]<span class="sc">&gt;</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(M0[i, ]<span class="sc">&gt;</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17</code></pre>
 </div>
 </div>
 <p>We can then compute the counterfactual of the first observation from <span style="color: red;">group 0</span>, <span class="math inline">\(\mathbf{x}_{\textcolor{red}{0},i}\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>weights_i <span class="ot">&lt;-</span> M0[i,]</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>counterfactual_i <span class="ot">&lt;-</span> weights_i <span class="sc">%*%</span> tP1</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>counterfactual_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>weights_i <span class="ot">&lt;-</span> M0[i,]</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>counterfactual_i <span class="ot">&lt;-</span> weights_i <span class="sc">%*%</span> tP1</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>counterfactual_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             A         B         C
 [1,] 0.3167699 0.4324855 0.2507445</code></pre>
@@ -1568,8 +1694,8 @@ U(n_{0},n_{1})=\left\lbrace
 </div>
 <p>For the reccord, the Gaussian optimal transport was:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i <span class="ot">&lt;-</span> transp_val_clr_0_1[i, ]</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i <span class="ot">&lt;-</span> transp_val_clr_0_1[i, ]</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
       A     B     C
@@ -1579,104 +1705,13 @@ U(n_{0},n_{1})=\left\lbrace
 </div>
 <p>And let us extract the interpolated path to display in on a graph.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i_interp <span class="ot">&lt;-</span> <span class="fu">interpolated</span>(transp_val_clr_0_1)[[i]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i_interp <span class="ot">&lt;-</span> <span class="fu">interpolated</span>(transp_val_clr_0_1)[[i]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can visualize on a ternary plot the point of interest <span class="math inline">\(\mathbf{x}_{\textcolor{red}{0},i}\)</span>, its counterfactual <span class="math inline">\(T^\star(\mathbf{x}_{\textcolor{red}{0},i})\)</span> (big blue square). The size of the blue dots matches the weights.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Codes to create the Figure.</summary>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>p_1 <span class="ot">&lt;-</span> <span class="fu">ggtern</span>(</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>), </span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group)</span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Focus on the first obs in group 0</span></span>
-<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">!!</span>i),</span>
-<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display observations in group 1 where size is function of the</span></span>
-<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtained weight</span></span>
-<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">weight =</span> M0[i,]),</span>
-<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> weight),</span>
-<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
-<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the counterfactual</span></span>
-<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gaussian_t_obs_i <span class="sc">|&gt;</span> </span>
-<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
-<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="fu">factor</span>(<span class="dv">1</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), </span>
-<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="fu">factor</span>(col_groups[[<span class="st">"1"</span>]], <span class="at">levels =</span> <span class="fu">levels</span>(toydataset<span class="sc">$</span>colour))</span>
-<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb67-26"><a href="#cb67-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>,</span>
-<span id="cb67-27"><a href="#cb67-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
-<span id="cb67-28"><a href="#cb67-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb67-29"><a href="#cb67-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the interpolation path obtained with Gaussian OT</span></span>
-<span id="cb67-30"><a href="#cb67-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb67-31"><a href="#cb67-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gaussian_t_obs_i_interp <span class="sc">|&gt;</span> </span>
-<span id="cb67-32"><a href="#cb67-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
-<span id="cb67-33"><a href="#cb67-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="fu">factor</span>(<span class="dv">0</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), </span>
-<span id="cb67-34"><a href="#cb67-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="fu">factor</span>(col_groups[[<span class="st">"0"</span>]], <span class="at">levels =</span> <span class="fu">levels</span>(toydataset<span class="sc">$</span>colour))</span>
-<span id="cb67-35"><a href="#cb67-35" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb67-36"><a href="#cb67-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb67-37"><a href="#cb67-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb67-38"><a href="#cb67-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(</span></span>
-<span id="cb67-39"><a href="#cb67-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   data = gaussian_t_obs_i |&gt; </span></span>
-<span id="cb67-40"><a href="#cb67-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     mutate(</span></span>
-<span id="cb67-41"><a href="#cb67-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       group = factor(1, levels = c(0, 1)), </span></span>
-<span id="cb67-42"><a href="#cb67-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       colour = factor(col_groups[["1"]], levels = levels(toydataset$colour))</span></span>
-<span id="cb67-43"><a href="#cb67-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     ),</span></span>
-<span id="cb67-44"><a href="#cb67-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   size = 2,</span></span>
-<span id="cb67-45"><a href="#cb67-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   shape = 15</span></span>
-<span id="cb67-46"><a href="#cb67-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ) +</span></span>
-<span id="cb67-47"><a href="#cb67-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb67-48"><a href="#cb67-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">guide =</span> <span class="st">"none"</span>)</span>
-<span id="cb67-49"><a href="#cb67-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-50"><a href="#cb67-50" aria-hidden="true" tabindex="-1"></a>p_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="fig-ternary-toydataset-counterfactuals-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ternary-toydataset-counterfactuals-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.7: Empirical counterfactual of <span class="math inline">\(\mathbf{x}_{\textcolor{red}{0},1}\)</span> (blue square) and path to the counterfactual obtained with Gaussian optimal transport on the simplex (shown with the red line).
-</figcaption>
-<div aria-describedby="fig-ternary-toydataset-counterfactuals-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="application-toydataset_files/figure-html/fig-ternary-toydataset-counterfactuals-1-1.png" class="img-fluid figure-img" width="672">
-</div>
-</figure>
-</div>
-</div>
-</div>
-<p>For illustrative purposes, we can also visualize the counterfactual of another observation, e.g., the third.</p>
-<p>The counterfactual obtained with the optimal transport using LP libraries:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>weights_i <span class="ot">&lt;-</span> M0[i,]</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>counterfactual_i <span class="ot">&lt;-</span> weights_i <span class="sc">%*%</span> tP1</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>counterfactual_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>             A         B         C
-[1,] 0.2011471 0.6590863 0.1397667</code></pre>
-</div>
-</div>
-<p>And the version obtained with Gaussian OT:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i <span class="ot">&lt;-</span> transp_val_clr_0_1[i, ]</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i_interp <span class="ot">&lt;-</span> <span class="fu">interpolated</span>(transp_val_clr_0_1)[[i]]</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-      A     B     C
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 0.204 0.659 0.138</code></pre>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Codes to create the Figure.</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>p_2 <span class="ot">&lt;-</span> <span class="fu">ggtern</span>(</span>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>p_1 <span class="ot">&lt;-</span> <span class="fu">ggtern</span>(</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>), </span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group)</span>
 <span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
@@ -1713,10 +1748,113 @@ Figure&nbsp;1.7: Empirical counterfactual of <span class="math inline">\(\mathbf
 <span id="cb72-35"><a href="#cb72-35" aria-hidden="true" tabindex="-1"></a>      ),</span>
 <span id="cb72-36"><a href="#cb72-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
 <span id="cb72-37"><a href="#cb72-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb72-38"><a href="#cb72-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb72-39"><a href="#cb72-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">guide =</span> <span class="st">"none"</span>)</span>
-<span id="cb72-40"><a href="#cb72-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-41"><a href="#cb72-41" aria-hidden="true" tabindex="-1"></a>p_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb72-38"><a href="#cb72-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(</span></span>
+<span id="cb72-39"><a href="#cb72-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   data = gaussian_t_obs_i |&gt; </span></span>
+<span id="cb72-40"><a href="#cb72-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     mutate(</span></span>
+<span id="cb72-41"><a href="#cb72-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       group = factor(1, levels = c(0, 1)), </span></span>
+<span id="cb72-42"><a href="#cb72-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       colour = factor(col_groups[["1"]], levels = levels(toydataset$colour))</span></span>
+<span id="cb72-43"><a href="#cb72-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     ),</span></span>
+<span id="cb72-44"><a href="#cb72-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   size = 2,</span></span>
+<span id="cb72-45"><a href="#cb72-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   shape = 15</span></span>
+<span id="cb72-46"><a href="#cb72-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ) +</span></span>
+<span id="cb72-47"><a href="#cb72-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb72-48"><a href="#cb72-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb72-49"><a href="#cb72-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb72-50"><a href="#cb72-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-51"><a href="#cb72-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb72-52"><a href="#cb72-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb72-53"><a href="#cb72-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb72-54"><a href="#cb72-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span>
+<span id="cb72-55"><a href="#cb72-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-56"><a href="#cb72-56" aria-hidden="true" tabindex="-1"></a>p_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-ternary-toydataset-counterfactuals-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ternary-toydataset-counterfactuals-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.7: Empirical counterfactual of <span class="math inline">\(\mathbf{x}_{\textcolor{red}{0},1}\)</span> (blue square) and path to the counterfactual obtained with Gaussian optimal transport on the simplex (shown with the red line).
+</figcaption>
+<div aria-describedby="fig-ternary-toydataset-counterfactuals-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="application-toydataset_files/figure-html/fig-ternary-toydataset-counterfactuals-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>For illustrative purposes, we can also visualize the counterfactual of another observation, e.g., the third.</p>
+<p>The counterfactual obtained with the optimal transport using LP libraries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>weights_i <span class="ot">&lt;-</span> M0[i,]</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>counterfactual_i <span class="ot">&lt;-</span> weights_i <span class="sc">%*%</span> tP1</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>counterfactual_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             A         B         C
+[1,] 0.2011471 0.6590863 0.1397667</code></pre>
+</div>
+</div>
+<p>And the version obtained with Gaussian OT:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i <span class="ot">&lt;-</span> transp_val_clr_0_1[i, ]</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i_interp <span class="ot">&lt;-</span> <span class="fu">interpolated</span>(transp_val_clr_0_1)[[i]]</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>gaussian_t_obs_i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+      A     B     C
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 0.204 0.659 0.138</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Codes to create the Figure.</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>p_2 <span class="ot">&lt;-</span> <span class="fu">ggtern</span>(</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>), </span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> C, <span class="at">z =</span> B, <span class="at">colour =</span> group)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Focus on the first obs in group 0</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">!!</span>i),</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display observations in group 1 where size is function of the</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># obtained weight</span></span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> toydataset <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">weight =</span> M0[i,]),</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> weight),</span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the counterfactual</span></span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gaussian_t_obs_i <span class="sc">|&gt;</span> </span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="fu">factor</span>(<span class="dv">1</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), </span>
+<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="fu">factor</span>(col_groups[[<span class="st">"1"</span>]], <span class="at">levels =</span> <span class="fu">levels</span>(toydataset<span class="sc">$</span>colour))</span>
+<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb77-27"><a href="#cb77-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
+<span id="cb77-28"><a href="#cb77-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-29"><a href="#cb77-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the interpolation path obtained with Gaussian OT</span></span>
+<span id="cb77-30"><a href="#cb77-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb77-31"><a href="#cb77-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gaussian_t_obs_i_interp <span class="sc">|&gt;</span> </span>
+<span id="cb77-32"><a href="#cb77-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb77-33"><a href="#cb77-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="fu">factor</span>(<span class="dv">0</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), </span>
+<span id="cb77-34"><a href="#cb77-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="fu">factor</span>(col_groups[[<span class="st">"0"</span>]], <span class="at">levels =</span> <span class="fu">levels</span>(toydataset<span class="sc">$</span>colour))</span>
+<span id="cb77-35"><a href="#cb77-35" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb77-36"><a href="#cb77-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb77-37"><a href="#cb77-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-38"><a href="#cb77-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> col_groups, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb77-39"><a href="#cb77-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb77-40"><a href="#cb77-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb77-41"><a href="#cb77-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb77-42"><a href="#cb77-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb77-43"><a href="#cb77-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb77-44"><a href="#cb77-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-45"><a href="#cb77-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span>
+<span id="cb77-46"><a href="#cb77-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-47"><a href="#cb77-47" aria-hidden="true" tabindex="-1"></a>p_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-toydataset-counterfactuals-2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1733,29 +1871,29 @@ Figure&nbsp;1.8: Empirical counterfactual of <span class="math inline">\(\mathbf
 </div>
 <p>Lastly, we can build a small function, <code class="sourceCode r"><span class="fu">counterfactual_w</span>()</code>, to compute the counterfactuals for all observations from <span style="color: red;">group 0</span> to <span style="color: blue;">group 1</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Builds counterfactuals of observations from group 0 to group 1 using an</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' estimated mapping.</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param mapping Wasserstein mapping between the two sets of probability</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'  vectors</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X0 Matrix (or data frame) with vectors of probabilities in group 0.</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X1 Matrix (or data frame) with vectors of probabilities in group 1.</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A matrix with the counterfactual values using the mapping.</span></span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>counterfactual_w <span class="ot">&lt;-</span> <span class="cf">function</span>(mapping,</span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>                             X0,</span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>                             X1) {</span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X0)) X0 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X0)</span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X1)) X1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>  M0 <span class="ot">&lt;-</span> mapping<span class="sc">$</span>plan <span class="sc">*</span> <span class="fu">nrow</span>(X0)</span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>  M0 <span class="sc">%*%</span> X1</span>
-<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Builds counterfactuals of observations from group 0 to group 1 using an</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' estimated mapping.</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param mapping Wasserstein mapping between the two sets of probability</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'  vectors</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X0 Matrix (or data frame) with vectors of probabilities in group 0.</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param X1 Matrix (or data frame) with vectors of probabilities in group 1.</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A matrix with the counterfactual values using the mapping.</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>counterfactual_w <span class="ot">&lt;-</span> <span class="cf">function</span>(mapping,</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>                             X0,</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>                             X1) {</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X0)) X0 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X0)</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.matrix</span>(X1)) X1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X1)</span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>  M0 <span class="ot">&lt;-</span> mapping<span class="sc">$</span>plan <span class="sc">*</span> <span class="fu">nrow</span>(X0)</span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>  M0 <span class="sc">%*%</span> X1</span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This function can easily be applied:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>counterfactuals <span class="ot">&lt;-</span> <span class="fu">counterfactual_w</span>(<span class="at">mapping =</span> W_xy, <span class="at">X0 =</span> X0, <span class="at">X1 =</span> X1)</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counterfactuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>counterfactuals <span class="ot">&lt;-</span> <span class="fu">counterfactual_w</span>(<span class="at">mapping =</span> W_xy, <span class="at">X0 =</span> X0, <span class="at">X1 =</span> X1)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counterfactuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             A         B          C
 [1,] 0.3167699 0.4324855 0.25074451

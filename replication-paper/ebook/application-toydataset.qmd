@@ -75,7 +75,13 @@ ggtern(
   mapping = aes(x = A, y = C, z = B, colour = group)
     ) +
   geom_point() +
-  scale_colour_manual(values = col_groups)
+  scale_colour_manual(values = col_groups) +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 The average values in each group for the components:
@@ -648,7 +654,13 @@ ggtern(
     mapping = aes(group = id_obs)
   ) +
   scale_colour_manual(values = col_groups) +
-  facet_wrap(~type)
+  facet_wrap(~type) +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 ### Additive log transform
@@ -695,7 +707,13 @@ ggtern(
     mapping = aes(group = id_obs)
   ) +
   scale_colour_manual(values = col_groups) +
-  facet_wrap(~type)
+  facet_wrap(~type) +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 ### Isometric log transform
@@ -742,7 +760,13 @@ ggtern(
     mapping = aes(group = id_obs)
   ) +
   scale_colour_manual(values = col_groups) +
-  facet_wrap(~type)
+  facet_wrap(~type) +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 :::
@@ -836,23 +860,117 @@ ggplot(
 ```
 
 
+We can also visualize the estimation of density of the Dirichlet distributions fitted on the dataset (using {VGAM}). First, 
+```{r define-dir_0}
+dir_0 <- VGAM::vglm(
+  cbind(A,B,C)  ~ 1,
+  VGAM::dirichlet,
+  data = toydataset |> filter(group == 0),
+  trace = FALSE, crit = "coef"
+)
+dir_1 <- VGAM::vglm(
+  cbind(A,B,C)  ~ 1,
+  VGAM::dirichlet,
+  data = toydataset |> filter(group == 1),
+  trace = FALSE, crit = "coef"
+)
+VGAM::Coef(dir_0)
+VGAM::Coef(dir_1)
+```
+We prepare a grid to visualize the estimated densities.
+```{r define-contour_df}
+u <- (0:100) / 100
+u <- u[-c(1, length(u))]
+x <- expand.grid(u, u)
+x <- cbind(x, w = 1 - rowSums(x))
+# keep only valid points inside the simplex
+x <- x[rowSums(x >= 0) == 3, ]
+# Density for the Dirichlet distribution
+z_0 <- gtools::ddirichlet(x, alpha = VGAM::Coef(dir_0))
+z_1 <- gtools::ddirichlet(x, alpha = VGAM::Coef(dir_1))
+z_0[is.infinite(z_0)] <- NA
+z_1[is.infinite(z_1)] <- NA
 
+# Matrix for contouring
+mat_0 <- mat_1 <- matrix(NA, length(u), length(u))
+for (i in seq_len(nrow(x))) {
+  iu <- which.min(abs(u - x[i, 1]))
+  iv <- which.min(abs(u - x[i, 2]))
+  mat_0[iu, iv] <- z_0[i]
+  mat_1[iu, iv] <- z_1[i]
+}
+
+# Extract contour lines
+CL_0 <- contourLines(u, u, mat_0)
+CL_1 <- contourLines(u, u, mat_1)
+
+# Format in a data frame with ternary coordinates
+contour_df_0 <- do.call(
+  rbind,
+  lapply(
+    seq_along(CL_0), function(i) {
+      L <- CL_0[[i]]
+      tibble(
+        x = L$x,
+        y = L$y,
+        z = 1 - L$x - L$y,
+        group_obs = i,
+        level = L$level
+      )
+    }
+  )
+)
+contour_df_1 <- do.call(
+  rbind,
+  lapply(
+    seq_along(CL_1), function(i) {
+      L <- CL_1[[i]]
+      tibble(
+        x = L$x,
+        y = L$y,
+        z = 1 - L$x - L$y,
+        group_obs = i,
+        level = L$level
+      )
+    }
+  )
+)
+
+contour_df <-
+  contour_df_0 |> mutate(group = "0") |>
+  bind_rows(contour_df_1 |> mutate(group = "1")) |>
+  rename(A = x, B = y, C = z)
+```
+
+The estimated densities are shown in @fig-ternary-toydataset-densities.
 
 ```{r}
 #| fig-cap: $n=61$ points in $\mathcal{S}_3$, with a toy dataset.
 #| label: fig-ternary-toydataset-densities
 #| warning: false
-ggtern(
-  data = toydataset, 
-  mapping = aes(x = A, y = C, z = B, colour = group)
-    ) +
-  geom_point() +
-  scale_colour_manual(values = col_groups) +
-  stat_density_tern(
-    geom = "polygon",
-    fill = NA
+ggtern() +
+  # Add points
+  geom_point(
+    data = toydataset,
+    mapping = aes(x = A, y = C, z = B, colour = group),
+    size = 0.5
   ) +
-  facet_wrap(~group)
+  # Add contour lines
+  geom_path(
+    data = contour_df,
+    mapping = aes(x = A, y = C, z = B, group = group_obs, colour = group),
+    linewidth = .1
+  ) +
+  facet_wrap(~ group) +
+  scale_colour_manual(values = col_groups) +
+  guides(colour = "none") +
+  theme_light() +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 ## Optimal Transport for Measures on $\mathcal{S}_d$ {#sec-second-method}
@@ -1231,7 +1349,13 @@ p_1 <- ggtern(
   #   shape = 15
   # ) +
   scale_colour_manual(values = col_groups, guide = "none") +
-  scale_size_continuous(range = c(0, 3), guide = "none")
+  scale_size_continuous(range = c(0, 3), guide = "none") +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 p_1
 ```
@@ -1299,7 +1423,13 @@ p_2 <- ggtern(
     linewidth = 1
   ) +
   scale_colour_manual(values = col_groups, guide = "none") +
-  scale_size_continuous(range = c(0, 3), guide = "none")
+  scale_size_continuous(range = c(0, 3), guide = "none") +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 p_2
 ```

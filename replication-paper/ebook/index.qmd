@@ -135,7 +135,13 @@ ggtern(
     data = transp_val_clr_inter_0_1, linewidth = .1,
     mapping = aes(group = id_obs)
   ) +
-  scale_colour_manual(values = c("0" = "red", "1" = "blue"))
+  scale_colour_manual(values = c("0" = "red", "1" = "blue")) +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 

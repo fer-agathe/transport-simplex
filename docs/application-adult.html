@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-11d96894dd7817e82423dfd1eea0dc7d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -288,7 +288,7 @@ Objectives
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We apply the two methods presented in <a href="application-toydataset.html" class="quarto-xref">Chapter&nbsp;<span>1</span></a> to build counterfactuals for a categorical feature, as in [Chapter -<a href="application-german-credit.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+<p>We apply the two methods presented in <a href="application-toydataset.html" class="quarto-xref">Chapter&nbsp;<span>1</span></a> to build counterfactuals for a categorical feature, as in [Chapter <a href="application-german-credit.html" class="quarto-xref"><span>2</span></a>.</p>
 <p>The illustration is made on a second real world dataset, the Adult Income dataset from the <a href="https://archive.ics.uci.edu/dataset/2/adult">UCI Machine Learning Repository</a>.</p>
 </div>
 </div>
@@ -298,9 +298,9 @@ Objectives
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
 ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
+✔ purrr     1.0.4     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -475,7 +475,7 @@ Table&nbsp;3.1: Proportions of each marital status for women and for men.
 Proportions
 </div></th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Married</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Never-married</th>
@@ -676,7 +676,7 @@ Table&nbsp;3.2: Mappings from the <code>marital_status</code> categorical variab
 Predicted Scores
 </div></th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th style="text-align: left;" data-quarto-table-cell-role="th">marital_status</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Married</th>
@@ -1356,8 +1356,12 @@ Female -&gt; Male
 <span id="cb40-78"><a href="#cb40-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Married"</span>, <span class="at">y =</span> <span class="st">"Never-married"</span>, <span class="at">z =</span> <span class="st">"Separated"</span>) <span class="sc">+</span></span>
 <span id="cb40-79"><a href="#cb40-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_paper</span>() <span class="sc">+</span></span>
 <span id="cb40-80"><a href="#cb40-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(.<span class="dv">8</span>))</span>
-<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(.<span class="dv">8</span>)),</span>
+<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-83"><a href="#cb40-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb40-84"><a href="#cb40-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb40-85"><a href="#cb40-85" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-86"><a href="#cb40-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-displacement" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1578,8 +1582,12 @@ Note
 <span id="cb48-134"><a href="#cb48-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
 <span id="cb48-135"><a href="#cb48-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_paper</span>() <span class="sc">+</span></span>
 <span id="cb48-136"><a href="#cb48-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb48-137"><a href="#cb48-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(.<span class="dv">8</span>))</span>
-<span id="cb48-138"><a href="#cb48-138" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-137"><a href="#cb48-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(.<span class="dv">8</span>)),</span>
+<span id="cb48-138"><a href="#cb48-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.show =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb48-139"><a href="#cb48-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.arrow.sep =</span> .<span class="dv">13</span>,</span>
+<span id="cb48-140"><a href="#cb48-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
+<span id="cb48-141"><a href="#cb48-141" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-142"><a href="#cb48-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ternary-matching" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1833,8 +1841,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1945,7 +1951,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

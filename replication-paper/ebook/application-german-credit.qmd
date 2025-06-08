@@ -437,10 +437,13 @@ ggtern(
   scale_colour_manual(values = c("Female" = "red", "Male" = "blue"), guide = "none") +
   facet_wrap(~model) +
   labs(x = "Cars", y = "Other", z = "Equip.") +
-  theme_paper()
-  # theme(
-  #   tern.axis.title = element_text(size = rel(.9))
-  # )
+  theme_paper() +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 ## Optimal Transport in $\mathcal{S}_3$
@@ -664,7 +667,13 @@ ggtern(
   ) +
   scale_size_continuous(range = c(0, 2), guide = "none") +
   scale_alpha_discrete(guide = "none") +
-  theme_paper()
+  theme_paper() +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 ```
 
 
