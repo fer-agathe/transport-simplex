@@ -458,7 +458,7 @@ Note
 \boldsymbol{\Sigma}_t = \boldsymbol{\Sigma}_0^{-1/2} \left( (1 - t) \boldsymbol{\Sigma}_0 + t \left( \boldsymbol{\Sigma}_0^{1/2} \boldsymbol{\Sigma}_1 \boldsymbol{\Sigma}_0^{1/2} \right)^{1/2} \right)^2 \boldsymbol{\Sigma}_0^{-1/2}.
 \]</span></p>
 <p>We use</p>
-<div id="alg-1" class="pseudocode-container quarto-float" data-line-number-punc=":" data-chapter-level="1" data-indent-size="1.2em" data-caption-prefix="Algorithm" data-line-number="true" data-comment-delimiter="//" data-no-end="false" data-pseudocode-number="1">
+<div id="alg-1" class="pseudocode-container quarto-float" data-indent-size="1.2em" data-line-number="true" data-caption-prefix="Algorithm" data-comment-delimiter="//" data-pseudocode-number="1" data-line-number-punc=":" data-no-end="false" data-chapter-level="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{Gaussian Based Transport of $\mathbf{x}_0$ on $\mathcal{S}_d$} \begin{algorithmic} \STATE \textbf{Input:} $\mathbf{x}_0$ ($\in\mathcal{S}_d$)\\ \STATE \textbf{Parameter:} $\{\mathbf{x}_{0,1},\cdots,\mathbf{x}_{0,n_0}\}$ and $\{\mathbf{x}_{1,1},\cdots,\mathbf{x}_{1,n_1}\}$ in $\mathcal{S}_d$;\\ \STATE $\quad$ isomorphic transformation $h:\mathcal{S}_d\to\mathbb{R}^{d-1}$\\ \STATE \textbf{Output}: $\mathbf{x}_{1}$\\ \For{$i\in\{1,\cdots,n_0\}$} \STATE $\mathbf{z}_{0,i}\gets h(\mathbf{x}_{0,i})$ \EndFor \For{$i\in\{1,\cdots,n_1\}$} \STATE $\mathbf{z}_{1,i}\gets h(\mathbf{x}_{1,i})$ \EndFor \STATE $\mathbf{m}_0\gets$ average of $\{\mathbf{z}_{0,1},\cdots,\mathbf{z}_{0,n_0}\}$\\ \STATE $\mathbf{m}_1\gets$ average of $\{\mathbf{z}_{1,1},\cdots,\mathbf{z}_{1,n_1}\}$\\ \STATE $\mathbf{S}_0\gets$ empirical variance matrix of $\{\mathbf{z}_{0,1},\cdots,\mathbf{z}_{0,n_0}\}$\\ \STATE $\mathbf{S}_1\gets$ empirical variance matrix of $\{\mathbf{z}_{1,1},\cdots,\mathbf{z}_{1,n_1}\}$\\ \STATE $\boldsymbol{A}\gets \boldsymbol{S}_{0}^{-1/2}\big(\boldsymbol{S}_{0}^{1/2}\boldsymbol{S}_{1}\boldsymbol{S}_{0}^{1/2}\big)^{1/2}\boldsymbol{S}_{0}^{-1/2}$\\ \STATE $\mathbf{x}_{1} \gets \displaystyle{h^{-1}\big(\mathbf{m}_{1} + \boldsymbol{A}(h(\mathbf{x}_{0})-\mathbf{m}_{0})\big)}$\\ \end{algorithmic} \end{algorithm}
 </div>
@@ -1351,6 +1351,8 @@ Figure&nbsp;1.5: Optimal transport in <span class="math inline">\(\mathbb{R}^2\)
 </div>
 <p>The estimated densities are shown in <a href="#fig-ternary-toydataset-densities" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Codes to create the Figure.</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtern</span>() <span class="sc">+</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add points</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
@@ -1374,6 +1376,7 @@ Figure&nbsp;1.5: Optimal transport in <span class="math inline">\(\mathbb{R}^2\)
 <span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">tern.axis.vshift =</span> .<span class="dv">05</span>,</span>
 <span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hidetitles</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-ternary-toydataset-densities" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1413,7 +1416,7 @@ U(n_{0},n_{1})=\left\lbrace
 \right\rbrace,
 \tag{1.7}\]</span></span> and where <span class="math inline">\(\mathrm{C}\)</span> denotes the <span class="math inline">\({n_{0}}\times {n_{1}}\)</span> cost matrix, <span class="math inline">\(\mathrm{C}_{i,j}=c(\mathbf{x}_i,\mathbf{x}_{j})\)</span>, associated with cost from Equation (<a href="#eq-cost" class="quarto-xref">Equation&nbsp;<span>1.4</span></a>).</p>
 <p>Let us use the procedure explained in <span class="citation" data-cites="peyre2019computational">Peyré, Cuturi, et al. (<a href="references.html#ref-peyre2019computational" role="doc-biblioref">2019</a>)</span> (with a specific cost function, from <a href="#eq-cost" class="quarto-xref">Equation&nbsp;<span>1.4</span></a>) to couple samples on <span class="math inline">\(\mathcal{S}_d\)</span>, summarized in <a href="#alg-2" class="quarto-xref">Algorithm 1.2</a>.</p>
-<div id="alg-2" class="pseudocode-container quarto-float" data-line-number-punc=":" data-chapter-level="1" data-indent-size="1.2em" data-caption-prefix="Algorithm" data-line-number="true" data-comment-delimiter="//" data-no-end="false" data-pseudocode-number="2">
+<div id="alg-2" class="pseudocode-container quarto-float" data-indent-size="1.2em" data-line-number="true" data-caption-prefix="Algorithm" data-comment-delimiter="//" data-pseudocode-number="2" data-line-number-punc=":" data-no-end="false" data-chapter-level="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{Coupling samples on $\mathcal{S}_d$} \begin{algorithmic} \STATE \textbf{Input:} $\{\mathbf{x}_{0,1},\cdots,\mathbf{x}_{0,n_0}\}$ and $\{\mathbf{x}_{1,1},\cdots,\mathbf{x}_{1,n_1}\}$ in $\mathcal{S}_d$;\\ \STATE \textbf{Input:} weight matching matrix $n_0\times n_1$ $\mathbf{P}^*$\\ \STATE $\mathbf{C} \gets $ matrix $n_0\times n_1$, $\mathbf{C}_{i,j}=c(\mathbf{x}_i,\mathbf{x}_j)$\\ \STATE $\mathbf{P}^\star \gets$ solution the discrete Kantorovich problem, using LP libraries \end{algorithmic} \end{algorithm}
 </div>

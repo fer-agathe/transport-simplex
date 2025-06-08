@@ -948,6 +948,8 @@ The estimated densities are shown in @fig-ternary-toydataset-densities.
 #| fig-cap: $n=61$ points in $\mathcal{S}_3$, with a toy dataset.
 #| label: fig-ternary-toydataset-densities
 #| warning: false
+#| code-fold: true
+#| code-summary: Codes to create the Figure.
 ggtern() +
   # Add points
   geom_point(
