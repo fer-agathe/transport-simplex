@@ -45,7 +45,11 @@ ternary_1 <- ggtern(
   geom_point(size = .5) +
   scale_colour_manual(values = c("0" = "red", "1" = "blue")) +
   guides(colour = "none") +
-  theme_light()
+  theme_light() +
+  theme(
+    tern.axis.arrow.show = TRUE
+  ) +
+  theme_hidetitles()
 
 table_values <- toydataset |>
   group_by(group) |>
@@ -222,9 +226,13 @@ ternary_2 <- ggtern(
     strip.text.x = element_text(colour = "black"),
     strip.text = element_markdown(),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-    axis.title = element_text(size = rel(.8))
-  )
-
+    axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05
+  ) +
+  theme_hidetitles()
+# ternary_2
 
 ## Middle panel----
 #
@@ -533,6 +541,7 @@ p_euclid <- ggplot(
     text = element_text(family = font_family, size = unit(font_size, "pt"))
   )
 
+
 ## Combine and export----
 
 figure_2 <- cowplot::plot_grid(
@@ -562,12 +571,13 @@ plot(figure_2)
 
 filename <- "ternary2"
 ggsave(figure_2, file = str_c(path, filename, ".pdf"),
-       height = 4.6*1.75, width = 3.5*1.75)
+       height = 4.65*1.75, width = 3.5*1.75)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
 
 # Figure 3----
+
 library(VGAM)
 library(gtools)
 dir_0 <- vglm(
@@ -669,14 +679,17 @@ ternary_dir <- ggtern() +
     strip.background = element_blank(),
     strip.text = element_blank(),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-    axis.title = element_text(size = rel(.8))
-  )
+    axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 filename <- "ternary_dir"
 ggsave(ternary_dir, file = str_c(path, filename, ".pdf"), height = 2*1.75, width = 3.75*1.75)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
-
 
 # Figure 4----
 
@@ -731,7 +744,13 @@ p_1 <- ggtern(
   ) +
   scale_colour_manual(values = col_groups, guide = "none") +
   scale_size_continuous(range = c(0, 3), guide = "none") +
-  theme_light()
+  theme_light() +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 ## Right----
 i <- 3
@@ -779,7 +798,13 @@ p_2 <- ggtern(
   ) +
   scale_colour_manual(values = col_groups, guide = "none") +
   scale_size_continuous(range = c(0, 3), guide = "none") +
-  theme_light()
+  theme_light() +
+  theme(
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 p_2
 
@@ -815,6 +840,7 @@ system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
 
 # Figure 5----
+
 # install.packages("fairml")
 data(german.credit, package = "fairml")
 german.credit <-
@@ -985,6 +1011,7 @@ transp_top_path <-
     )
   )
 
+
 ternary_german_top <- ggtern(
   data = scores_top,
   mapping = aes(x = cars, y = other, z = equipment, colour = Gender)
@@ -997,14 +1024,18 @@ ternary_german_top <- ggtern(
   ) +
   scale_colour_manual(values = c("Female" = "red", "Male" = "blue"), guide = "none") +
   facet_wrap(~model) +
-  labs(x = "C", y = "Other", z = "Eq.") +
+  labs(x = "Cars", y = "Other", z = "Equipment") +
   theme_light() +
   theme(
     strip.background = element_rect(fill = NA, colour = "black"),
     tern.axis.title = element_text(size = rel(.8)),
     strip.text.x = element_text(colour = "black"),
-    text = element_text(family = font_family, size = unit(font_size, "pt"))
-  )
+    text = element_text(family = font_family, size = unit(font_size, "pt")),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 ### Table----
 
@@ -1270,14 +1301,18 @@ ternary_german_bottom <- ggtern(
   ) +
   scale_colour_manual(values = c("Female" = "red", "Male" = "blue"), guide = "none") +
   facet_wrap(~model) +
-  labs(x = "C", y = "Other", z = "Eq.") +
+  labs(x = "Cars", y = "Other", z = "Equipment") +
   theme_light() +
   theme(
     strip.background = element_rect(fill = NA, colour = "black"),
     tern.axis.title = element_text(size = rel(.8)),
     strip.text.x = element_text(colour = "black"),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-  )
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 ### Tables----
 table_rf <-
@@ -1432,12 +1467,15 @@ ggsave(ternary_german, file = str_c(path, filename, ".pdf"), height = 5.5*1.75, 
 # # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
+
+
 # Figure 6----
 
 # mapping_glm_1 <- wasserstein_simplex(X0_glm_1, X1_glm_1)
 # mapping_glm_2 <- wasserstein_simplex(X0_glm_2, X1_glm_2)
 # mapping_rf <- wasserstein_simplex(X0_rf, X1_rf)
 # mapping_gbm <- wasserstein_simplex(X0_gbm, X1_gbm)
+
 
 load("../output/matching_german.rda")
 M0_glm_1 <- mapping_glm_1$plan * nrow(X0_glm_1)
@@ -1593,7 +1631,7 @@ p_zoom <- ggtern(
   geom_point(data = cfact_indiv_i, size = 3, colour = "white", shape = 15) +
   geom_point(data = cfact_indiv_i, size = 2, shape = 15) +
   facet_wrap(~indiv) +
-  labs(x = "C", y = "Other", z = "Eq.") +
+  labs(x = "Cars", y = "Other", z = "Equipment") +
   scale_colour_manual(
     values = c("Female" = "red", "Male" = "blue"), guide = "none"
   ) +
@@ -1605,8 +1643,12 @@ p_zoom <- ggtern(
     strip.text = element_markdown(),
     strip.text.x = element_text(colour = "black"),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-    tern.axis.title = element_text(size = rel(.8))
-  )
+    tern.axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 # p_zoom
 
@@ -1614,6 +1656,7 @@ filename <- "zoom-pt-mlr2"
 ggsave(p_zoom, file = str_c(path, filename, ".pdf"), height = 2*1.75, width = 3.55*1.75)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
+
 
 # Figure 7----
 data(adult, package = "fairml")
@@ -1775,14 +1818,18 @@ ternary_adult_top <- ggtern(
   ) +
   scale_colour_manual(values = c("Female" = "red", "Male" = "blue"), guide = "none") +
   facet_wrap(~model) +
-  labs(x = "M", y = "S", z = "N") +
+  labs(x = "Married", y = "Separated", z = "Never-married") +
   theme_light() +
   theme(
     strip.background = element_rect(fill = NA, colour = "black"),
     tern.axis.title = element_text(size = rel(.8)),
     strip.text.x = element_text(colour = "black"),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-  )
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 ### Tables----
 
@@ -2047,15 +2094,19 @@ ternary_adult_bottom <- ggtern(
   ) +
   scale_colour_manual(values = c("Female" = "red", "Male" = "blue"), guide = "none") +
   facet_wrap(~model) +
-  labs(x = "M", y = "S", z = "N") +
+  labs(x = "Married", y = "Separated", z = "Never-married") +
   theme_light() +
   theme(
     strip.background = element_rect(fill = NA, colour = "black"),
     tern.axis.title = element_text(size = rel(.8)),
     strip.text.x = element_text(colour = "black"),
     text = element_text(family = font_family, size = unit(font_size, "pt")),
-    axis.title = element_text(size = rel(.8))
-  )
+    axis.title = element_text(size = rel(.8)),
+    tern.axis.arrow.show = TRUE,
+    tern.axis.arrow.sep = .13,
+    tern.axis.vshift = .05,
+  ) +
+  theme_hidetitles()
 
 ### Tables----
 table_rf <-
