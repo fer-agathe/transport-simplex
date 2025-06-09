@@ -26,6 +26,7 @@ loadfonts(device = "pdf")
 font_size <- 20
 font_factor_table <- .8
 font_family <- "CMU Serif"
+# font_family <- ""
 
 path <- "../figs/"
 if (!dir.exists("figs/")) dir.create(path)
@@ -146,7 +147,13 @@ ternary_plot <- cowplot::plot_grid(
 ternary_plot
 
 filename <- "ternary1"
-ggsave(ternary_plot, file = str_c(path, filename, ".pdf"), height = 2.8*1.75, width = 2.4*1.75)
+ggsave(
+  ternary_plot,
+  file = str_c(path, filename, ".pdf"),
+  height = 2.8*1.75, width = 2.4*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -570,8 +577,12 @@ figure_2 <- cowplot::plot_grid(
 plot(figure_2)
 
 filename <- "ternary2"
-ggsave(figure_2, file = str_c(path, filename, ".pdf"),
-       height = 4.65*1.75, width = 3.5*1.75)
+ggsave(
+  figure_2, file = str_c(path, filename, ".pdf"),
+  height = 4.65*1.75, width = 3.5*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -687,7 +698,13 @@ ternary_dir <- ggtern() +
   theme_hidetitles()
 
 filename <- "ternary_dir"
-ggsave(ternary_dir, file = str_c(path, filename, ".pdf"), height = 2*1.75, width = 3.75*1.75)
+ggsave(
+  ternary_dir,
+  file = str_c(path, filename, ".pdf"),
+  height = 2*1.75, width = 3.75*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -833,8 +850,13 @@ ternary_coupling <- cowplot::plot_grid(
 )
 
 filename <- "ternary_coupling"
-ggsave(ternary_coupling, file = str_c(path, filename, ".pdf"),
-       height = 2*1.75, width = 3.65*1.75)
+ggsave(
+  ternary_coupling,
+  file = str_c(path, filename, ".pdf"),
+  height = 2*1.75, width = 3.65*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -1463,7 +1485,13 @@ ternary_german <-
 
 
 filename <- "ternary_german"
-ggsave(ternary_german, file = str_c(path, filename, ".pdf"), height = 5.5*1.75, width = 3.5*1.75)
+ggsave(
+  ternary_german,
+  file = str_c(path, filename, ".pdf"),
+  height = 5.5*1.75, width = 3.5*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -1656,7 +1684,13 @@ p_zoom <- ggtern(
 # p_zoom
 
 filename <- "zoom-pt-mlr2"
-ggsave(p_zoom, file = str_c(path, filename, ".pdf"), height = 2*1.75, width = 3.55*1.75)
+ggsave(
+  p_zoom,
+  file = str_c(path, filename, ".pdf"),
+  height = 2*1.75, width = 3.55*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
@@ -2262,7 +2296,13 @@ ternary_adult <-
 
 
 filename <- "ternary_adult"
-ggsave(ternary_adult, file = str_c(path, filename, ".pdf"), height = 5.5*1.75, width = 3.5*1.75)
+ggsave(
+  ternary_adult,
+  file = str_c(path, filename, ".pdf"),
+  height = 5.5*1.75, width = 3.5*1.75,
+  family = font_family,
+  device = cairo_pdf
+)
 # # Crop PDF
 system(paste0("pdfcrop ", path, filename, ".pdf ", path, filename, ".pdf"))
 
