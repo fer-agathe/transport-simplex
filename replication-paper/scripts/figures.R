@@ -1523,17 +1523,20 @@ ind_match_i_2 <- which(weights_i_2_glm_2 > 0)
 cfact_i_2_glm_2 <- weights_i_2_glm_2 %*% X1_glm_2
 
 str_c(
-  "Woman ", i_2,
+  "Woman ", i_1,
   "\n# Purpose:\n\t",
-  german.credit[ind_0[i_2], "Purpose"],
+  german.credit[ind_0[i_1], "Purpose"],
   "\n# Pred with MLR(2)\n\t",
-  str_c(names(indiv_i_2_glm_2), " = ", round(100*indiv_i_2_glm_2, 2), collapse = ", "),
+  str_c(names(indiv_i_1_glm_2), " = ", round(100*indiv_i_1_glm_2, 2), collapse = ", "),
   "\n# Weights closest points:\n\t",
-  str_c(round(weights_i_2_glm_2[ind_match_i_2], 3), collapse = ", "),
+  str_c(round(weights_i_1_glm_2[ind_match_i_1], 3), collapse = ", "),
   "\n# Values of the neighbors:\n\t",
-  str_c(german.credit[ind_1[ind_match_i_2], "Purpose"], collapse = ", "),
+  str_c(german.credit[ind_1[ind_match_i_1], "Purpose"], collapse = ", "),
+  "\n# Predicted propensities of the neighbors in group 1:\n\t",
+  apply(X1_glm_2[ind_match_i_1,], 1, function(x) str_c(round(x, 3), collapse = ", ")) |>
+    str_c(collapse = "\n\t"),
   "\n# Counterfactual:\n\t",
-  str_c(colnames(cfact_i_2_glm_2), " = ", round(100 * cfact_i_2_glm_2, 2), collapse = ", ")
+  str_c(colnames(cfact_i_1_glm_2), " = ", round(100 * cfact_i_1_glm_2, 2), collapse = ", ")
 ) |>
   cat()
 
